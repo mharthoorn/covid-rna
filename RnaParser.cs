@@ -79,7 +79,7 @@ namespace covid_rna
 
         public AminoAcid FindAminoAcidByLetter(char letter)
         {
-            return Data.AminoAcids.Find(a => a.Letter == letter);
+            return AminoAcids.List.Find(a => a.Letter == letter);
         }
 
         public string CodonName(string codon)
