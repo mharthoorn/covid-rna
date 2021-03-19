@@ -17,8 +17,12 @@ namespace covid_rna
             Console.WriteLine($"Virus: RNA length: {Data.VirusRna.Length}, Amino length: {virus.Count}");
             Console.WriteLine($"Vaccine: RNA length: {Data.VaccineRna.Length}, Amino length: {vaccine.Count}");
 
-            var strain = virus.ToAminoString();
-            Print.ColorizedAminoAcidStrain(virus);
+            
+            Print.DiffColorizedAminoAcidStrain(virus, vaccine);
+
+            //var strainA = virus.ToAminoString();
+            //var strainB = vaccine.ToAminoString();
+            //Print.ColorizedAminoAcidStrain(virus);
             //Print.AminoPatternFrequencies(strain);
         }
     }

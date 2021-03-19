@@ -9,7 +9,7 @@ namespace covid_rna
         static int Index(char letter) => letter - 'A' + 1;
         static ConsoleColor Color(char letter)
         {
-            int index = Index(letter) % 16;
+            int index = Index(letter) % 15;
             return (ConsoleColor)index;
         }
 
@@ -22,6 +22,38 @@ namespace covid_rna
             Console.ResetColor();
             Console.Write(" ");
             Console.WriteLine(); 
+        }
+        public static void PrintTripletDiff(string s, string original)
+        {
+            var color = Console.ForegroundColor;
+            for(int i = 0; i < 3; i++)
+            {
+                if (s[i] == original[i])
+                {
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.ForegroundColor = color;
+                }
+                else 
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                
+                Console.Write(s[i]);
+            }
+        }
+        public static void AminoAcidDiff(Codon original, Codon modified)
+        {
+            Console.Write($"{original.AminoAcid.Name,20} | ");
+            Console.ForegroundColor = Color(original.AminoAcid.Letter);
+            Console.Write($"{original.Triplet} ");
+            
+            Console.ForegroundColor = Color(modified.AminoAcid.Letter);
+            //Console.Write($" {modified.Triplet}");
+            PrintTripletDiff(modified.Triplet, original.Triplet);
+            Console.ResetColor();
+            Console.Write($" | {modified.AminoAcid.Name}");
+            Console.WriteLine();
         }
 
         public static void RnaCompare(IEnumerable<Codon> virus, IEnumerable<Codon> vaccine)
@@ -38,6 +70,13 @@ namespace covid_rna
         {
             foreach (var codon in strain) Print.AminoAcid(codon.AminoAcid);
         }
+
+        public static void DiffColorizedAminoAcidStrain(IEnumerable<Codon> original, IEnumerable<Codon> modified)
+        {
+            var zip = original.Zip(modified);
+            foreach (var codons in zip) Print.AminoAcidDiff(codons.First, codons.Second);
+        }
+
 
         public static void AminoPatternFrequencies(string aminostrain)
         {
