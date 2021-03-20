@@ -1,29 +1,19 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
+using RnaAnalysis;
 
-namespace covid_rna
-{
 
-    class Program
-    {
+var parser = await RnaParser.Build();
+var virus = parser.ReadCodons(Data.VirusRna).ToList();
+var vaccine = parser.ReadCodons(Data.VaccineRna).ToList();
 
-        static async Task Main(string[] args)
-        {
-            var parser = await RnaParser.Build();
-            var virus = parser.ReadCodons(Data.VirusRna).ToList();
-            var vaccine = parser.ReadCodons(Data.VaccineRna).ToList();
+Console.WriteLine($"Virus: RNA length: {Data.VirusRna.Length}, Amino length: {virus.Count}");
+Console.WriteLine($"Vaccine: RNA length: {Data.VaccineRna.Length}, Amino length: {vaccine.Count}");
 
-            Console.WriteLine($"Virus: RNA length: {Data.VirusRna.Length}, Amino length: {virus.Count}");
-            Console.WriteLine($"Vaccine: RNA length: {Data.VaccineRna.Length}, Amino length: {vaccine.Count}");
 
-            
-            Print.DiffColorizedAminoAcidStrain(virus, vaccine);
+Print.DiffColorizedAminoAcidStrain(virus, vaccine);
 
-            //var strainA = virus.ToAminoString();
-            //var strainB = vaccine.ToAminoString();
-            //Print.ColorizedAminoAcidStrain(virus);
-            //Print.AminoPatternFrequencies(strain);
-        }
-    }
-}
+//var strainA = virus.ToAminoString();
+//var strainB = vaccine.ToAminoString();
+//Print.ColorizedAminoAcidStrain(virus);
+//Print.AminoPatternFrequencies(strain);

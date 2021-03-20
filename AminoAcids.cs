@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace covid_rna
+namespace RnaAnalysis
 {
     public class AminoAcids
     { 

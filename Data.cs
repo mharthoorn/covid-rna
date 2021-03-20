@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace covid_rna
+namespace RnaAnalysis
 {
     public class Data
     {

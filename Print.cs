@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace covid_rna
+namespace RnaAnalysis
 {
     public class Print
     {
