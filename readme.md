@@ -1,0 +1,1 @@
+![Graph](https://raw.githubusercontent.com/mharthoorn/covid-rna/master/output.png)
